@@ -1,0 +1,24 @@
+.calculator {
+  width: 200px;
+  background-color: #898484;
+  border-radius: 4px;
+  box-shadow: 0 3px 3px -2px rgba(137, 132, 132, .2),
+    0 3px 4px 0 rgba(137, 132, 132, .14),
+    0 1px 8px 0 rgba(137, 132, 132, .12);
+  overflow: hidden;
+}
+
+.header {
+  padding: 8px 12px;
+  text-align: right;
+  color: white;
+}
+
+.buffer {
+  margin: 0 0 8px;
+  color: #e8e8e8;
+}
+
+.result {
+  font-weight: 500;
+}
