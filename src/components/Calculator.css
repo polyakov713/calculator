@@ -15,10 +15,13 @@
 }
 
 .buffer {
+  min-height: 18px;
   margin: 0 0 8px;
   color: #e8e8e8;
 }
 
 .result {
+  display: block;
   font-weight: 500;
+  min-height: 18px;
 }

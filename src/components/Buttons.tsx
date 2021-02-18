@@ -1,7 +1,7 @@
 import { Component } from 'vue-property-decorator';
 import { VueComponent } from '../shims-vue';
 
-import styles from './Buttons.css?module'
+import styles from './Buttons.css?module';
 
 @Component
 export default class Buttons extends VueComponent {
@@ -13,15 +13,18 @@ export default class Buttons extends VueComponent {
     ],
   };
 
+  onClick(event: MouseEvent) {
+    const buttonText: string = event.target ? (event.target as HTMLElement).innerHTML : '';
+    this.$emit('buttonClick', buttonText);
+  }
+
   render() {
     return (
       <table class={styles.buttons}>
         <thead></thead>
-        <tbody>
+        <tbody onClick={this.onClick}>
           {
             this.buttons.rows.map((row, index) => {
-              console.log(row);
-
               return (
                 <tr
                   key={`tr-${index}`}
