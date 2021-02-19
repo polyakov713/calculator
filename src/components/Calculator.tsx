@@ -17,6 +17,22 @@ export default class Calculator extends VueComponent {
   private isClear: boolean = true;
   private isLoading: boolean = false;
 
+  get truncatedBuffer(): string {
+    return this.truncateLeft(this.buffer, 16);
+  }
+
+  get truncatedResult(): string {
+    return this.truncateLeft(String(this.result), 16);
+  }
+
+  truncateLeft(str: string, count: number): string {
+    const l = str.length;
+
+    return l <= count
+      ? str
+      : `...${str.substr(-count)}`;
+  }
+
   onClick(button: string) {
     if (this.isLoading) return;
 
@@ -96,10 +112,10 @@ export default class Calculator extends VueComponent {
       <div class={styles.calculator}>
         <header class={styles.header}>
           <p class={styles.buffer}>
-            {this.buffer}
+            {this.truncatedBuffer}
           </p>
           <strong class={styles.result}>
-            {this.isClear ? '' : this.result}
+            {this.isClear ? '' : this.truncatedResult}
           </strong>
         </header>
         <div class='calculator__body'>
