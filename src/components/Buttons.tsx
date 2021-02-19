@@ -8,9 +8,10 @@ export default class Buttons extends VueComponent {
   private buttons = ['7', '8', '9', 'C', '4', '5', '6', '-', '1', '2', '3', '+'];
 
   onClick(event: MouseEvent) {
-    console.log(event.target);
-    const buttonText: string = event.target ? (event.target as HTMLElement).innerHTML : '';
-    this.$emit('buttonClick', buttonText);
+    if (event.target && (event.target as HTMLElement).tagName === 'BUTTON') {
+      const buttonText: string = event.target ? (event.target as HTMLElement).innerHTML : '';
+      this.$emit('buttonClick', buttonText);
+    }
   }
 
   render() {
