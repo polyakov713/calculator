@@ -1,21 +1,10 @@
 .buttons {
-  border-collapse: collapse;
   width: 200px;
-}
-
-.tr:last-child .td {
-  border-bottom: none;
-}
-
-.td {
-  padding: 0;
-  border: 1px solid #898484;
-}
-.td:first-child {
-  border-left: none;
-}
-.td:last-child {
-  border-right: none;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 1px;
+  column-gap: 1px;
 }
 
 .button {
@@ -35,11 +24,16 @@
   outline: none;
 }
 
-.td:last-child .button {
+.button:nth-child(4n), .button:last-child {
   background-color: #c55b5b;
   color: white;
 }
 
-.td:last-child .button:hover {
+.button:nth-child(4n):hover, .button:last-child:hover {
   background-color: #c34b4b;
+}
+
+.zeroButton {
+  grid-column-start: 1;
+  grid-column-end: 4;
 }
