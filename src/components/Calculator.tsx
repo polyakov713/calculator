@@ -14,6 +14,7 @@ export default class Calculator extends VueComponent {
   private buffer: string = '';
   private result: number = 0;
   private prevResult: number = 0;
+  private isClear: boolean = true;
   private isLoading: boolean = false;
 
   onClick(button: string) {
@@ -35,6 +36,7 @@ export default class Calculator extends VueComponent {
     if (l === 1) {
       this.result = Number(this.buffer);
     } else {
+      this.isClear = false;
       const lastOperator = splittedBuffer[l - 2];
 
       if (lastOperator === '+') {
@@ -61,6 +63,7 @@ export default class Calculator extends VueComponent {
       case 'C':
         this.buffer = '';
         this.result = 0;
+        this.isClear = true;
         break;
       default:
         console.log('unknown operator');
@@ -72,6 +75,7 @@ export default class Calculator extends VueComponent {
       this.isLoading = true;
       await this.requestToServer();
       this.buffer = String(this.result);
+      this.isClear = true;
     } catch (err) {
       console.log('Error:', err);
     } finally {
@@ -95,7 +99,7 @@ export default class Calculator extends VueComponent {
             {this.buffer}
           </p>
           <strong class={styles.result}>
-            {this.result}
+            {this.isClear ? '' : this.result}
           </strong>
         </header>
         <div class='calculator__body'>
